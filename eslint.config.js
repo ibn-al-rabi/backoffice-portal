@@ -22,7 +22,12 @@ export default tseslint.config(
       ecmaVersion: 2020,
       globals: globals.browser,
     },
-    settings: { react: { version: '18.3' } },
+    settings: {
+      react: { version: '18.3' },
+      "import/resolver": {
+        "typescript": true,
+      },
+    },
     plugins: {
       react,
       'import': importPlugin,
