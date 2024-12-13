@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 
-import { HomePage } from "../home";
+import { HomePage, homeLoader } from "../home";
 import { LoginPage } from "../login";
 import { NotFoundPage } from "../notFound";
 
@@ -8,7 +8,7 @@ const Router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-    loader: undefined,
+    loader: homeLoader,
   },
   {
     path: "/login",

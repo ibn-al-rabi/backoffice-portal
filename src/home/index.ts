@@ -1,3 +1,4 @@
 import { HomePage } from "./pages";
+import { homeLoader } from "./loader";
 
-export { HomePage };
+export { HomePage, homeLoader };
