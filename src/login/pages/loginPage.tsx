@@ -1,9 +1,33 @@
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
+import { useState } from "react";
+import { jwtDecode } from "jwt-decode";
+
+import { GoogleAuthTokenData } from "../types.ts";
+
 const LoginPage = () => {
+  const [output, setOutput] = useState<{ name: string; email: string } | null>(
+    null
+  );
+
+  const onSuccess = (response: CredentialResponse) => {
+    const decoded: GoogleAuthTokenData = jwtDecode(response.credential || "");
+    console.log(decoded);
+    setOutput({
+      name: decoded.name,
+      email: decoded.email,
+    });
+  };
+
+  const onError = () => {
+    console.log("login failed!");
+  };
+
   return (
-    <div>
+    <>
       <h1>Login</h1>
-      <button>Login Page</button>
-    </div>
+      <GoogleLogin onSuccess={onSuccess} onError={onError} />
+      <div>{output && JSON.stringify(output)}</div>
+    </>
   );
 };
 
