@@ -3,6 +3,7 @@ import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 import { GoogleAuthTokenData } from "../types.ts";
+import { api, LOGIN_PROVIDERS } from "../remote";
 
 const LoginPage = () => {
   const [output, setOutput] = useState<{ name: string; email: string } | null>(
@@ -16,6 +17,13 @@ const LoginPage = () => {
       name: decoded.name,
       email: decoded.email,
     });
+
+    api.loginWithProvider({
+      provider: LOGIN_PROVIDERS.GOOGLE,
+      name: decoded.name,
+      email: decoded.email,
+    }).then(() => {}, () => {});
+
   };
 
   const onError = () => {
